@@ -6,15 +6,17 @@
     function getBase(number: Number) {
         let numberString = number.toString();
 
-        return numberString[0] + "0".repeat(numberString.length - 1);
+        return (numberString.length - 5 >= 0 ? numberString[numberString.length - 5] : "") + numberString[numberString.length - 4] + "0".repeat(3);
     }
 
-    let startNumber = 20080;
-    let baseUrl = `https://acdn3.sexcelebrity.net/content/videos/`;
-    $: sources = Array.from(
-        { length: 20 },
-        (v, i) => `${baseUrl}${getBase(startNumber + i)}/${(startNumber + i).toString()}/${(startNumber + i).toString()}_1080p.mp4`
-    );
+    let startNumber = Number.parseInt(localStorage.getItem("startNumber") ?? "20080");
+    let baseUrl = localStorage.getItem("baseUrl") ?? `https://acdn3.sexcelebrity.net/content/videos/`;
+    $: sources = Array.from({ length: 20 }, (v, i) => {
+      let url = `${baseUrl}${getBase(startNumber + i)}/${(startNumber + i).toString()}/${(startNumber + i).toString()}_1080p.mp4`;
+      console.log(url);
+      
+        return url;
+    });
 </script>
 
 <main>
@@ -26,6 +28,7 @@
                 type="text"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 bind:value={baseUrl}
+                on:input={(_) => localStorage.setItem("baseUrl", baseUrl)}
             />
         </div>
 
@@ -36,6 +39,7 @@
                 step="20"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 bind:value={startNumber}
+                on:input={(_) => localStorage.setItem("startNumber", startNumber.toString())}
             />
         </div>
     </div>
