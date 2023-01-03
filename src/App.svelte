@@ -9,7 +9,7 @@
         return numberString[0] + "0".repeat(numberString.length - 1);
     }
 
-    let startNumber = 20600;
+    let startNumber = 20080;
     let baseUrl = `https://acdn3.sexcelebrity.net/content/videos/`;
     $: sources = Array.from(
         { length: 20 },
@@ -20,17 +20,24 @@
 <main>
     <!-- <h1 class="text-3xl font-bold underline">Player</h1> -->
     <div class="grid gap-6 mb-6 md:grid-cols-2">
-        <input
-            type="text"
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            bind:value={baseUrl}
-        />
-        <input
-            type="number"
-            step="20"
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            bind:value={startNumber}
-        />
+        <div>
+            <label class="block mb-2 text-sm font-medium text-gray-900">Base Url</label>
+            <input
+                type="text"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                bind:value={baseUrl}
+            />
+        </div>
+
+        <div>
+            <label class="block mb-2 text-sm font-medium text-gray-900">Start Number</label>
+            <input
+                type="number"
+                step="20"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                bind:value={startNumber}
+            />
+        </div>
     </div>
 
     <div class="grid gap-6 mb-6 md:grid-cols-4">
